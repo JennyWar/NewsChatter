@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>News Chatter</title>
-    <link rel="icon" href="../images/oMeFavicon2.png">
+    <title>Music News Chatter</title>
+    <link rel="icon" href="../..public/assets/images/favicon.ico">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <link rel="stylesheet" href="../../public/assets/css/styles.css" media="screen" title="styles.css">
@@ -18,7 +18,7 @@
     {{!-- =============================== Navbar --}}
     <nav>
         <div class="nav-wrapper">
-            <a href="/" class="brand-logo">News Chatter - Mongo Scraper</a>
+            <a href="/" class="brand-logo">Music News Chatter - Mongo Scraper</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li>
                     <a href="/">Home</a>
@@ -27,8 +27,8 @@
                     <a href="###">Saved Articles</a>
                 </li>
                 <li>
-                    <button>
-                        <a href="collapsible.html">Scrape New Articles</a>
+                    <button id="scraperButton">
+                        <a href="/get">Scrape New Articles</a>
                     </button>
                 </li>
             </ul>
@@ -47,6 +47,8 @@
             </div>
         </div>
     </footer> 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </body>
 
 </html>

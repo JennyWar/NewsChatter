@@ -1,4 +1,7 @@
-// =================================
+// *****************************************************************************
+// Server.js - This file is the initial starting point for the Node/Express server.
+// *****************************************************************************
+
 // Dependencies
 // =================================
 const express = require('express');
@@ -7,20 +10,21 @@ const logger = require('morgan');
 const mongoose = require('mongoose');
 const request = require('request');
 
-// Our scraping tools
+// Scraping tools
+// ==================================
 const axios = require("axios");
 const cheerio = require("cheerio");
 
 // Require all models
 const db = require("./models");
 
-const PORT = 3000;
-
-// Initialize Express
+// Sets up the Express App
+// ======================================
 const app = express();
+const PORT = process.env.PORT || 8080;
 
 // Configure middleware
-
+// ========================================
 // Use morgan logger for logging requests
 app.use(logger("dev"));
 // Use body-parser for handling form submissions
@@ -29,12 +33,28 @@ app.use(bodyParser.json());
 // Use express.static to serve the public folder as a static directory
 app.use(express.static("public"));
 
+// Set Handlebars
+// ============================================
+var exphbs = require("express-handlebars");
+
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
+
 // By default mongoose uses callbacks for async queries, we're setting it to use promises (.then syntax) instead
 // Connect to the Mongo DB
 mongoose.Promise = Promise;
 mongoose.connect('mongodb://localhost/newschatter');
 
 // Routes
+// ==============================================
+const fetchController = require("./controllers/fetch.js");
+const headlineController = require("./controllers/headline.js");
+const noteController = require("./controllers/note.js");
+
+
+app.use(fetchController);
+app.use(headlineController);
+app.use(noteController);
 
 // A GET route for scraping the stereogum website
 app.get("/scrape", function(req, res) {

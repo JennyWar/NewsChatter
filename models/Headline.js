@@ -26,7 +26,7 @@ var HeadlineSchema = new Schema({
 });
 
 // This creates our model from the above schema, using mongoose's model method
-const Headline = mongoose.model("Headline", ArticleSchema);
+const Headline = mongoose.model("Headline", HeadlineSchema);
 
 // Export the Article model
 module.exports = Headline;
