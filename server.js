@@ -35,7 +35,7 @@ app.use(express.static("public"));
 
 // Set Handlebars
 // ============================================
-var exphbs = require("express-handlebars");
+const exphbs = require("express-handlebars");
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
@@ -52,9 +52,9 @@ const headlineController = require("./controllers/headline.js");
 const noteController = require("./controllers/note.js");
 
 
-app.use(fetchController);
-app.use(headlineController);
-app.use(noteController);
+// app.use(fetchController);
+// app.use(headlineController);
+// app.use(noteController);
 
 // A GET route for scraping the stereogum website
 app.get("/scrape", function(req, res) {
