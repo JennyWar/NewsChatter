@@ -11,6 +11,9 @@ var db = require("../models");
 
 const controller = require('../controllers/index')
 
+// Get route for the landing page
+router.get('/', controller.home);
+
 // A GET route for scraping the echojs website
 router.get("/scrape", controller.scrape);
 
