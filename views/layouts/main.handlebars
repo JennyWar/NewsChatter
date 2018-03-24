@@ -9,6 +9,8 @@
     <link rel="icon" href="../../assets/images/favicon.ico">
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Permanent+Marker" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Chelsea+Market" rel="stylesheet">
     <link rel="stylesheet" href="../../assets/css/styles.css" media="screen" title="styles.css">
      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- Compiled and minified JavaScript -->
@@ -19,22 +21,27 @@
     {{!-- =============================== Navbar --}}
     <nav>
         <div class="nav-wrapper">
-            <a href="/" class="brand-logo">Music News Chatter - Mongo Scraper</a>
+            <a href="/" class="brand-logo">Music News Chatter</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li>
                     <a href="/">Home</a>
                 </li>
                 <li>
-                    <a href="###">Saved Articles</a>
+                    <a href="/articles">Saved Articles</a>
                 </li>
                 <li>
-                    <button id="scraperButton">
-                        <a href="/get">Scrape New Articles</a>
-                    </button>
+                    <a href="/scrape">Scrape New Articles</a>
                 </li>
             </ul>
         </div>
     </nav>
+
+    <div class="jumbotron">
+        <div class="pageTitles">
+            <h1 class="pageTitle">Mongo Scraper</h1>
+            <h3 class="pageSubtitle">Stereogum Edition</h3>
+        </div>
+    </div>
 
     <main id="wrapper">
         {{{body}}}

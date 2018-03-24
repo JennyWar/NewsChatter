@@ -1,0 +1,41 @@
+.nav-wrapper {
+    background-color: #b3b30b;
+    color: whitesmoke;
+    font-family: 'Chelsea Market', cursive;
+}
+
+.brand-logo {
+    margin-left: 1%;
+}
+
+.jumbotron {
+    justify-content: center;
+    align-items: center;
+    margin: 2%;
+    background-image: url('../images/album.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+} 
+
+.pageTitles {
+    background-color: #ffffff;
+    opacity: 0.6;
+    font-family: 'Permanent Marker', cursive;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+main {
+    flex: 1 0 auto;
+  }
+
+  .page-footer {
+    text-align: center;
+    background-color: #b3b30b;
+    color: whitesmoke;
+    font-family: 'Chelsea Market', cursive;
+}

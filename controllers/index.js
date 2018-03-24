@@ -1,11 +1,11 @@
 // Our scraping tools
 // Axios is a promised-based http library, similar to jQuery's Ajax method
 // It works on the client and on the server
-var axios = require("axios");
-var cheerio = require("cheerio");
+const axios = require("axios");
+const cheerio = require("cheerio");
 
 // Require all models
-var db = require("../models");
+const db = require("../models");
 
 module.exports = {
     home: function(req,res) {
@@ -18,20 +18,34 @@ module.exports = {
       var $ = cheerio.load(response.data);
 
     // Now, we grab every h2 within an article tag, and do the following:
-    $("h2").each(function(i, element) {
+    $(".left-col div:nth-child(1) .post").each(function(i, element) {
+
       // Save an empty result object
-      var result = {};
+
+      console.log('-------------------------------')
+    //   console.log($(element).find("a").attr("href"))
+
+      let result = {};
 
       // Add the text and href of every link, and save them as properties of the result object
-      result.title = $(this)
+      result.title = $(element)
+        .find('h2')
         .text();
-      result.link = $(this)
-        .parent()
+
+      result.link = $(element)
+        .find('a')
         .attr("href");
+
+        result.headline = $(element)
+        .find('.preview')
+        .text();
+
+        console.log(result)
+        console.log('-------------------------------')
         
       // Create a new Article using the `result` object built from scraping
-      db.Headline.create(result).limit(20)
-        .then(function(dbHeadline) {
+      db.Headline.create(result)
+        .then(function(dbArticle) {
           // View the added result in the console
           console.log(dbArticle);
           console.log(result);
@@ -52,7 +66,8 @@ module.exports = {
   getArticles: function(req, res) {
     // Grab every document in the Articles collection
     db.Headline.find({})
-      .then(function(dbHeadline) {
+    .limit(20)
+      .then(function(dbArticle) {
         // If we were able to successfully find Articles, send them back to the client
         res.json(dbArticle);
       })
@@ -67,9 +82,9 @@ module.exports = {
     db.Headline.findOne({ _id: req.params.id })
     // ..and populate all of the notes associated with it
       .populate("note")
-      .then(function(dbHeadline) {
+      .then(function(dbArticle) {
         // If we were able to successfully find an Article with the given id, send it back to the client
-        res.json(dbHeadline);
+        res.json(dbArticle);
       })
       .catch(function(err) {
         // If an error occurred, send it to the client
@@ -88,7 +103,7 @@ module.exports = {
       })
       .then(function(dbHeadline) {
         // If we were able to successfully update an Article, send it back to the client
-        res.json(dbHeadline);
+        res.json(dbArticle);
       })
       .catch(function(err) {
         // If an error occurred, send it to the client
