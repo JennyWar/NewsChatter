@@ -8,7 +8,7 @@ const cheerio = require("cheerio");
 const db = require("../models");
 
 module.exports = {
-    home: function(req,res) {
+  home: function(req,res) {
         res.render('../views/home');
     },
   scrape: function(req, res) {
@@ -66,7 +66,6 @@ module.exports = {
   getArticles: function(req, res) {
     // Grab every document in the Articles collection
     db.Headline.find({})
-    .limit(20)
       .then(function(dbArticle) {
         // If we were able to successfully find Articles, send them back to the client
         res.json(dbArticle);
@@ -109,5 +108,24 @@ module.exports = {
         // If an error occurred, send it to the client
         res.json(err);
       });
+  },
+
+  savedArticles: function(req, res) {
+    const articleId = req.body;
+    db.Headline.find({})
+    .limit(20)
+      .then(function(dbArticle) {
+        // If we were able to successfully find Articles, send them back to the client
+        res.json(dbArticle);
+
+      })
+      .catch(function(err) {
+        // If an error occurred, send it to the client
+        res.json(err);
+      });
+  },
+
+  deleteArticles: function(req, res) {
+    const articleId = req.body;
   }
 }
